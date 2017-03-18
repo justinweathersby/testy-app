@@ -1,0 +1,64 @@
+<div class="col-lg-10 offset-lg-1">
+  <div class="row">
+    <h1 class="text-md-center" style="padding: 1rem 0">Push Notifications</h1>
+  </div>
+
+  <div class="row">
+    <% if current_user.has_role? :admin %>
+      <div class="pull-right">
+        <%= link_to  new_push_notification_path, :class=>"btn btn-warning"  do %>
+          Create Push Notification
+          <!-- <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> -->
+        <% end %>
+      </div>
+    <% end %>
+    <div class="text-lg-left">
+      <%= link_to root_path, :class=>"btn btn-danger" do  %>
+        <i class="fa fa-chevron-circle-left fa-fw" aria-hidden="true"></i>Back
+      <% end %>
+    </div>
+  </div>
+
+<div class="row" style="padding: 2rem 0">
+  <table class="table table-hover" style="background-color: white; padding-top:5rem; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; border-radius: 0rem 0rem .25rem .25rem">
+    <thead>
+      <tr>
+        <th>Message</th>
+        <th class="text-lg-center">
+          Date Sent
+        </th>
+        <th class="text-lg-center">
+          Actions
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @push_notifications.exists? %>
+        <% @push_notifications.each do |notification| %>
+          <tr>
+            <td><%= notification.message %></td>
+            <td class="text-lg-center">
+              <%= notification.created_at.strftime("%m/%d/%Y at %I:%M%p") %>
+              <!-- <%= link_to 'Destroy', notification, :class=>"btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } if can? :manage, notification %> -->
+            </td>
+            <td class="text-lg-center">
+              <%= link_to 'Remove', notification, :class=>"btn btn-sm btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="2" class="text-sm-center">
+            You Havent Sent Any Push Notifications Yet
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @push_notifications, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer, class: 'pagination-sm text-lg-center' %>
+
+  </div>
+
+</div>

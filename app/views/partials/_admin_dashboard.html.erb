@@ -1,0 +1,164 @@
+<div class="col-lg-10 offset-lg-1">
+  <div class="row">
+    <h1 class="text-sm-center" style="padding: 1rem 0">Admin Dashboard</h1>
+  </div>
+  <div class="row text-lg-right">
+    <%= link_to "Manage Dealerships", dealerships_path, :class => "btn btn-info" %>
+    <%= link_to "Push Notifications", push_notifications_path, :class => "btn btn-warning" %>
+  </div>
+
+  <div class="row" style="padding: 2rem 0">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" href="#moderator" role="tab" data-toggle="tab">Moderators</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#sales_rep" role="tab" data-toggle="tab">Sales Reps</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#service_rep" role="tab" data-toggle="tab">Service Reps</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#customer" role="tab" data-toggle="tab">Customers</a>
+      </li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" style= "background-color: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; border-radius: 0rem 0rem .25rem .25rem">
+      <div role="tabpanel" class="tab-pane fade in active" id="moderator">
+        <table class="table table-hover" style="padding-top:5rem;">
+          <thead>
+            <tr>
+              <th style="border-top:transparent">
+                Email
+              </th>
+              <th style="border-top:transparent">Name</th>
+              <th style="border-top:transparent">Dealership</th>
+              <th colspan="1" class="text-lg-center" style="border-top:transparent">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @moderators.each do |moderator| %>
+              <tr>
+                <td><%= moderator.email %></td>
+                <td><%= moderator.name %></td>
+                <td><%= Dealership.with_role(:moderator, moderator).first.name %></td>
+                <td class="text-lg-center">
+                  <!-- <%= link_to 'Edit', edit_registration_path(moderator), :class=>"btn btn-danger" %> -->
+                  <%= link_to 'Remove', moderator, :class=>"btn btn-sm btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="row" style="margin: 1rem;border-top: .1rem solid #ddd;padding-top: 1rem;">
+          <%= link_to new_moderator_url, :class => "btn btn-info" do %>
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Moderator
+          <% end %>
+        </div>
+      </div>
+      <!-- END MODERATORS -->
+      <!-- BEGIN SALES REP -->
+      <div role="tabpanel" class="tab-pane fade" id="sales_rep">
+        <table class="table table-hover" style="padding-top:5rem;">
+          <thead>
+            <tr>
+              <th style="border-top:transparent">Image</th>
+              <th style="border-top:transparent">Email</th>
+              <th style="border-top:transparent">Name</th>
+              <th style="border-top:transparent">Dealership</th>
+              <th colspan="1" class="text-lg-center" style="border-top:transparent">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @sales_reps.each do |rep| %>
+              <tr>
+                <td><%= image_tag rep.image.url(:thumb), style: "max-width:50px" %></td>
+                <td><%= rep.email %></td>
+                <td><%= rep.name %></td>
+                <td><%= Dealership.with_role(:sales_rep, rep).first.name %></td>
+                <td class="text-lg-center">
+                  <%= link_to 'Edit',  edit_sales_rep_path(rep), :class=>"btn btn-danger" %>
+                  <%= link_to 'Remove', rep, :class=>"btn btn-sm btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="row" style="margin: 1rem;border-top: .1rem solid #ddd;padding-top: 1rem;">
+          <%= link_to new_sales_rep_url, :class => "btn btn-info" do %>
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Sales Representative
+          <% end %>
+        </div>
+      </div>
+      <!-- END SALES REP -->
+      <!-- BEGIN SERVICE REP -->
+      <div role="tabpanel" class="tab-pane fade" id="service_rep">
+        <table class="table table-hover" style="padding-top:5rem;">
+          <thead>
+            <tr>
+              <th style="border-top:transparent">Image</th>
+              <th style="border-top:transparent">Email</th>
+              <th style="border-top:transparent">Name</th>
+              <th style="border-top:transparent">Dealership</th>
+              <th colspan="1" class="text-lg-center" style="border-top:transparent">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @service_reps.each do |rep| %>
+              <tr>
+                <td><%= image_tag rep.image.url(:thumb), style: "max-width:50px"  %></td>
+                <td><%= rep.email %></td>
+                <td><%= rep.name %></td>
+                <td><%= Dealership.with_role(:service_rep, rep).first.name %></td>
+                <td class="text-lg-center">
+                  <%= link_to 'Edit', edit_service_rep_path(rep), :class=>"btn btn-danger" %>
+                  <%= link_to 'Remove', rep, :class=>"btn btn-sm btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="row" style="margin: 1rem;border-top: .1rem solid #ddd;padding-top: 1rem;">
+          <%= link_to new_service_rep_url, :class => "btn btn-info" do %>
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Service Representative
+          <% end %>
+        </div>
+      </div>
+      <!-- END SERVICE REP -->
+      <div role="tabpanel" class="tab-pane fade" id="customer">
+        <table class="table table-hover" style="padding-top:5rem;">
+          <thead>
+            <tr>
+              <th style="border-top:transparent">
+                Email
+              </th>
+              <th style="border-top:transparent">Name</th>
+              <th style="border-top:transparent">Dealership</th>
+              <th colspan="1" class="text-lg-center" style="border-top:transparent">Actions</th>
+              <!-- <th colspan="3"></th> -->
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @customers.each do |customer| %>
+              <tr>
+                <td><%= customer.email %></td>
+                <td><%= customer.name %></td>
+                <td><%= customer.dealership.name if customer.dealership %></td>
+                <td class="text-lg-center">
+                  <%= link_to 'Remove', customer, :class=>"btn btn-sm btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- <div role="tabpanel" class="tab-pane fade" id="references">ccc</div> -->
+    </div>
+  </div>
+</div>

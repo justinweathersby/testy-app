@@ -1,0 +1,81 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$gray-darker: lighten(#000, 13.5%);
+$gray-dark: lighten(#000, 20%);
+$gray: lighten(#000, 33.5%);
+$gray-light: lighten(#000, 60%);
+$gray-lighter: lighten(#000, 93.5%);
+$gray-lightest: lighten(#000, 97.25%);
+$brand-primary: #428bca;
+$brand-success: #5cb85c;
+$brand-info: #5bc0de;
+$brand-warning: #f0ad4e;
+$brand-danger: #d9534f;
+
+
+// Custom Colored Panels
+
+.huge {
+    font-size: 40px;
+}
+.card-blue {
+    border-color: $brand-primary;
+    .card-header {
+        border-color: $brand-primary;
+        color: white;
+        background-color: $brand-primary;
+    }
+    a {
+        color: $brand-primary;
+        &:hover {
+            color: darken($brand-primary, 15%);
+        }
+    }
+}
+
+.card-green {
+    border-color: $brand-success;
+    .card-header {
+        border-color: $brand-success;
+        color: white;
+        background-color: $brand-success;
+    }
+    a {
+        color: $brand-success;
+        &:hover {
+            color: darken($brand-success, 15%);
+        }
+    }
+}
+
+.card-red {
+    border-color: $brand-danger;
+    .card-header {
+        border-color: $brand-danger;
+        color: white;
+        background-color: $brand-danger;
+    }
+    a {
+        color: $brand-danger;
+        &:hover {
+            color: darken($brand-danger, 15%);
+        }
+    }
+}
+
+.card-yellow {
+    border-color: $brand-warning;
+    .card-header {
+        border-color: $brand-warning;
+        color: white;
+        background-color: $brand-warning;
+    }
+    a {
+        color: $brand-warning;
+        &:hover {
+            color: darken($brand-warning, 15%);
+        }
+    }
+}

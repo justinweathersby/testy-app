@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BakerMotorMobileOtd</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+      <script>
+      window.setTimeout(function () {
+           $(".alert-info").slideUp(500, function () {
+                $(".alert-info").hide();
+            });
+       }, 5000);
+     </script>
+  </head>
+
+  <body>
+    <%= render 'partials/header' %>
+    <div class="container" style="margin-top:70px;">
+        <% flash.each do |name, msg| %>
+            <%= content_tag(:div, msg, class: "alert alert-info") %>
+        <% end %>
+
+        <%= yield %>
+    </div>
+  </body>
+</html>

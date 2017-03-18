@@ -1,0 +1,55 @@
+<div class="col-lg-10 offset-lg-1">
+  <div class="row">
+    <h1 class="text-md-center" style="padding: 1rem 0">Create Push Notification</h1>
+  </div>
+
+  <%= form_for(@push_notification) do |f| %>
+  <div class="row">
+    <% if current_user.has_role? :admin %>
+      <div class="pull-right" style="width:20%">
+        <%= f.submit "Create", :type => "submit", :class=>"btn btn-primary", :style=>"width:100%" %>
+      </div>
+    <% end %>
+    <div class="text-lg-left">
+      <%= link_to push_notifications_path, :class=>"btn btn-danger" do  %>
+        <i class="fa fa-chevron-circle-left fa-fw" aria-hidden="true"></i>Back
+      <% end %>
+    </div>
+  </div>
+
+  <% if @push_notification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@push_notification.errors.count, "error") %> prohibited this push_notification from being saved:</h2>
+
+      <ul>
+      <% @push_notification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row" style="background-color: white; border-radius:.5em; padding:2em;margin-top: 2.5em;">
+
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Message:</label>
+    <div class="col-sm-10">
+      <%= f.text_field :message, :id=> "inputName", :class=> "form-control", :placeholder=>"Message" %>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Customers:</label>
+    <div class="col-sm-10">
+    <%= f.collection_check_boxes :tokens, User.where.not('device_token' => nil), :device_token, :email do |b| %>
+          <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+    <% end %>
+          </div>
+    </div>
+  </div>
+</div>
+  <% end %>
+</div>

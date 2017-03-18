@@ -1,0 +1,4 @@
+<% if can? :update, @dealership  %>
+  <%= link_to 'Edit', edit_dealership_path(@dealership)%> |
+<% end %>
+<%= link_to 'Back', dealerships_path %>

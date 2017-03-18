@@ -1,0 +1,199 @@
+<div class="col-lg-10 offset-lg-1">
+  <div class="row">
+    <h1 class="text-sm-center">Edit Dealership</h1>
+  </div>
+
+  <div class="container" style="padding-top:2em">
+    <%= form_for(@dealership) do |f| %>
+      <% if @dealership.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(dealership.errors.count, "error") %> prohibited this dealership from being saved:</h2>
+
+          <ul>
+          <% @dealership.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <!-- <div style="border: 0.1rem solid gray; border-radius: 1rem;padding: 2rem;"> -->
+      <div class="form-group row">
+        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <%= f.text_field :name, :id=> "inputName", :class=> "form-control", :placeholder=>"Name", autofocus: true %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputPhone" class="col-sm-2 col-form-label">Phone</label>
+        <div class="col-sm-10">
+          <%= f.telephone_field :phone, :id=> "inputPhone", :class=> "form-control", :placeholder=>"Phone"%>
+        </div>
+      </div>
+      <!-- </div> -->
+      <div class="form-group row">
+        <label for="inputPrimaryColor" class="col-sm-2 col-form-label">Primary Color</label>
+        <div class="col-sm-10">
+          <%= f.color_field :primary_color, :id=> "inputPrimaryColor", :class=> "form-control" %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="form-group row">
+        <label for="inputLogo" class="col-sm-2 col-form-label">Logo</label>
+        <div class="col-sm-5">
+          <%= f.file_field :logo, :id=> "inputLogo", :class=> "form-control" %>
+        </div>
+        <div class="col-sm-5 text-sm-center">
+          <%= image_tag @dealership.logo.url(:thumb) %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputBackgroundImage" class="col-sm-2 col-form-label">Background Image</label>
+        <div class="col-sm-5">
+          <%= f.file_field :background_image, :id=> "inputBackgroundImage", :class=> "form-control" %>
+        </div>
+        <div class="col-sm-5 text-sm-center">
+          <%= image_tag @dealership.background_image.url(:medium), :style=>"width:50%;" %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="form-group row">
+        <label for="inputNewCarsUrl" class="col-sm-2 col-form-label">New Sales Url</label>
+        <div class="col-sm-10">
+          <%= f.url_field :new_cars_url, :id=> "inputNewCarsUrl", :class=> "form-control", :placeholder=>"http://www.dealership.com/new_cars" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputUsedCarsUrl" class="col-sm-2 col-form-label">Used Sales Url</label>
+        <div class="col-sm-10">
+          <%= f.url_field :used_cars_url, :id=> "inputUsedCarsUrl", :class=> "form-control", :placeholder=>"http://www.dealership.com/used_cars"  %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputServiceUrl" class="col-sm-2 col-form-label">Service Url</label>
+        <div class="col-sm-10">
+          <%= f.url_field :service_url, :id=> "inputServiceUrl", :class=> "form-control", :placeholder=>"http://www.dealership.com/service"  %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputSpecialsUrl" class="col-sm-2 col-form-label">Specials Url</label>
+        <div class="col-sm-10">
+          <%= f.url_field :specials_url, :id=> "inputSpecialsUrl", :class=> "form-control", :placeholder=>"http://www.dealership.com/specials"  %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputServSpecialsUrl" class="col-sm-2 col-form-label">Service Specials Url</label>
+        <div class="col-sm-10">
+          <%= f.url_field :service_specials_url, :id=> "inputServSpecialsUrl", :class=> "form-control", :placeholder=>"http://www.dealership.com/specials"  %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputPartsUrl" class="col-sm-2 col-form-label">Parts Url</label>
+        <div class="col-sm-10">
+          <%= f.url_field :parts_url, :id=> "inputPartsUrl", :class=> "form-control", :placeholder=>"http://www.dealership.com/parts"  %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputFinancingUrl" class="col-sm-2 col-form-label">Financing Url</label>
+        <div class="col-sm-10">
+          <%= f.url_field :financing_url, :id=> "inputFinancingUrl", :class=> "form-control", :placeholder=>"http://www.dealership.com/financing"  %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="form-group row">
+        <label for="inputSalesEmail" class="col-sm-2 col-form-label">Sales Email</label>
+        <div class="col-sm-10">
+          <%= f.email_field :sales_email, :id=> "inputSalesEmail", :class=> "form-control", :placeholder=>"sales@dealership.com" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputServiceEmail" class="col-sm-2 col-form-label">Service Email</label>
+        <div class="col-sm-10">
+          <%= f.email_field :service_email, :id=> "inputServiceEmail", :class=> "form-control", :placeholder=>"service@dealership.com" %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="form-group row">
+        <label for="inputTwitter" class="col-sm-2 col-form-label">Twitter Url</label>
+        <div class="col-sm-10">
+          <%= f.url_field :twitter_url, :id=> "inputTwitter", :class=> "form-control", :placeholder=>"https://twitter.com/bakermotorcochs" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputFacebook" class="col-sm-2 col-form-label">Facebook Url</label>
+        <div class="col-sm-10">
+          <%= f.url_field :facebook_url, :id=> "inputFacebook", :class=> "form-control", :placeholder=>"https://www.facebook.com/dealershipName" %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="form-group row">
+        <label for="inputStreet" class="col-sm-2 col-form-label">Street</label>
+        <div class="col-sm-10">
+          <%= f.text_field :street, :id=> "inputStreet", :class=> "form-control", :placeholder=>"1111 Example Ave." %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputCity" class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-10">
+          <%= f.text_field :city, :id=> "inputCity", :class=> "form-control", :placeholder=>"Charleston" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputState" class="col-sm-2 col-form-label">State</label>
+        <div class="col-sm-10">
+          <%= f.text_field :state, :id=> "inputState", :class=> "form-control", :placeholder=>"South Carolina" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputZipcode" class="col-sm-2 col-form-label">Zipcode</label>
+        <div class="col-sm-10">
+          <%= f.text_field :zipcode, :id=> "inputZipcode", :class=> "form-control", :placeholder=>"29403" %>
+        </div>
+      </div>
+
+      <hr />
+      <div class="form-group row">
+        <label class="col-sm-2">iframe Friendly</label>
+        <div class="col-sm-10">
+          <%= f.check_box :iframeFriendly, :class=> "form-check-input" %>
+          <%= f.label :iframeFriendly, "Are your links iframe friendly?" %>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <!-- <button type="submit" class="btn btn-primary">Add</button> -->
+          <%= f.submit "Edit", :type => "submit", :class=>"btn btn-primary" %>
+          <%= link_to 'Back', dealerships_path, :class=>"btn btn-info" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+<!-- <%= link_to 'Show', @dealership %> |
+<%= link_to 'Back', dealerships_path %>
+</div> -->

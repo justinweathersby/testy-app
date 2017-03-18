@@ -1,0 +1,60 @@
+<div class="container">
+  <h2 class="text-lg-center" style="padding: 1rem 0">Edit User</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group row">
+    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <%= f.email_field :email, :id=> "inputEmail", :class=> "form-control", :placeholder=>"Email", autofocus: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <%= f.text_field :name, :id=> "inputName", :class=> "form-control", :placeholder=>"Name" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="exampleSelect1" class="col-sm-2 col-form-label">Dealership</label>
+    <div class="col-sm-10">
+      <%= select_tag :dealership_id, options_for_select(Dealership.all.collect{ |u| [u.name, u.id] }), class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row text-center"><%= image_tag @user.image.url(:small) if @user.image.present? %></div>
+
+  <div class="form-group row">
+    <label for="inputLogo" class="col-sm-2 col-form-label">Image</label>
+    <div class="col-sm-10">
+      <%= f.file_field :image, :id=> "inputLogo", :class=> "form-control" %>
+    </div>
+  </div>
+
+  <!-- <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <%= f.password_field :password, :id=> "inputPassword", :class=> "form-control", autocomplete: "off" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputPasswordConf" class="col-sm-2 col-form-label">Password Confirmation</label>
+    <div class="col-sm-10">
+      <%= f.password_field :password_confirmation, :id=> "inputPasswordConf", :class => "form-control",  autocomplete: "off" %>
+    </div>
+  </div> -->
+
+  <div class="actions text-lg-center">
+    <%= f.submit "Update", :class=>"btn btn-primary btn-block" %>
+  </div>
+<% end %>
+
+<!-- <h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p> -->
+
+</div>

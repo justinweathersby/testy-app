@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <% if current_user.has_role? :admin %>
+    <%= render 'partials/admin_dashboard' %>
+  <% elsif current_user.has_role? :moderator, :any %>
+    <%= render 'partials/moderator_dashboard' %>
+  <% end %>
+<% else %>
+  
+  <% controller.redirect_to new_user_session_url %>
+<% end %>
